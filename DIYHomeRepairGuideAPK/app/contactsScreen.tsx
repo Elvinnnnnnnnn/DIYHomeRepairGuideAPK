@@ -1,8 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Text, Image, ScrollView, ImageBackground, TouchableOpacity, TextInput } from "react-native";
 import Navbar from './navbar';
 
 const ContactsScreen = () => {
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
+
+ const handleSubmit = async () => {
+  console.log('Form data:', { name, email, subject, message }); // Log data before sending
+  setName('');
+  setEmail('');
+  setSubject('');
+  setMessage('');
+  try {
+    const response = await fetch('http://192.168.240.37:5000/submit-message', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, subject, message }),
+    });
+    console.log("Response:", response); // Log the response object
+    const data = await response.json();
+    console.log('Server response:', data);
+    if (response.ok) {
+      console.log('Message sent successfully!');
+    } else {
+      console.log('Error sending message. Please try again.');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    console.log('An error occurred. Please try again.');
+  }
+};
+
+  
   return (
     <View style={styles.root}>
         <ImageBackground source={require('../Pictures/apk_background_photo.jpg')} style={styles.background}>
@@ -13,15 +46,32 @@ const ContactsScreen = () => {
                     <Text>Contacts Us</Text>
                     <Text style={styles.getInTouch}>Get in Touch</Text>
                     <Text>Name</Text>
-                    <TextInput style={styles.nameInput} placeholder='Your Name..' />
+                    <TextInput 
+                    value={name}
+                    onChangeText={setName}
+                    style={styles.nameInput} 
+                    placeholder='Your Name..' />
                     <Text>Email</Text>
-                    <TextInput style={styles.emailInput} placeholder='Your Email..' />
+                    <TextInput 
+                    value={email} 
+                    onChangeText={setEmail}
+                    style={styles.emailInput} 
+                    placeholder='Your Email..' />
                     <Text>Subject</Text>
-                    <TextInput style={styles.subjectInput} placeholder='Your Subject..' />
+                    <TextInput 
+                    value={subject} 
+                    onChangeText={setSubject}
+                    style={styles.subjectInput} 
+                    placeholder='Your Subject..' />
                     <Text>Message</Text>
-                    <TextInput style={styles.messageInput} placeholder='Title..'  multiline
+                    <TextInput 
+                    value={message} 
+                    onChangeText={setMessage}
+                    style={styles.messageInput} 
+                    placeholder='Title..'  
+                    multiline
                     numberOfLines={6}/>
-                    <TouchableOpacity style={styles.sendBtn}>
+                    <TouchableOpacity style={styles.sendBtn} onPress={handleSubmit}>
                       <Text>Send Now</Text>
                     </TouchableOpacity>
                   </View>
