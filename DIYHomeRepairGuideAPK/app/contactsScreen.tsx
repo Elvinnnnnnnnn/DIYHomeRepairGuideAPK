@@ -119,6 +119,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     elevation: 10,
     marginTop: 10,
+    marginLeft: 9
   },
   getInTouch: {
     paddingVertical: 3,
