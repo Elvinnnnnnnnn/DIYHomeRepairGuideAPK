@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "DIYHomeRepairGuideAPK",
-    "slug": "DIYHomeRepairGuideAPK",
+    "slug": "DIYHomeRepairGuide",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -43,9 +43,6 @@
     "extra": {
       "router": {
         "origin": false
-      },
-      "eas": {
-        "projectId": "c99628f8-b7dd-40db-9ce2-84ea6835584e"
       }
     }
   }
