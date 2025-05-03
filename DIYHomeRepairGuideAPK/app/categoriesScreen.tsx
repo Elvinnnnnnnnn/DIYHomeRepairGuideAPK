@@ -558,7 +558,13 @@ const CategoriesScreen = () => {
           {selectedVideo && openVideo && 
             <View style={styles.tutorialContainer}>
                 <TouchableOpacity style={styles.removeBtn} onPress={handleRemoveTutorial}><Text>X</Text></TouchableOpacity>
-                <WebView style={styles.videoTutorial} source={{ uri: selectedVideo }} allowFullscreenVideo />
+                <WebView 
+                    style={styles.videoTutorial}
+                    source={{ uri: selectedVideo }}
+                    javaScriptEnabled={true}
+                    domStorageEnabled={true}
+                    allowsFullscreenVideo={true} // This enables fullscreen mode
+                    mediaPlaybackRequiresUserAction={false} />
             </View>
           }
   
