@@ -15,6 +15,10 @@ app.listen(5000, '0.0.0.0', () => {
     console.log('Server running at http://0.0.0.0:5000');
 });
 
+// Log environment variables to check if they are loaded properly
+console.log("GMAIL_USER:", process.env.GMAIL_USER);
+console.log("GMAIL_PASS:", process.env.GMAIL_PASS ? 'Exists' : 'Missing');
+
 app.post("/submit-message", async (req, res) => {
     console.log('Received request:', req.body); // This should log the request body
     const { name, email, subject, message } = req.body;

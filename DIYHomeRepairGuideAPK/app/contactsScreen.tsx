@@ -16,7 +16,7 @@ const ContactsScreen = () => {
   setSubject('');
   setMessage('');
   try {
-    const response = await fetch('http://192.168.240.37:5000/submit-message', {
+    const response = await fetch('https://diyhomerepairguideapk.onrender.com/submit-message', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, subject, message }),
